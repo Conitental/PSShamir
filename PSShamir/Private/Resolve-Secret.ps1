@@ -5,7 +5,7 @@ Function Resolve-Secret {
     )
 
     if ($Shares.Length -lt 3) {
-        throw "Need at least three shares."
+        # throw "Need at least three shares."
     }
 
     # Unzip the shares into x_s and y_s
@@ -13,11 +13,12 @@ Function Resolve-Secret {
     $PointPolynomials = [System.Collections.ArrayList]@()
 
     foreach ($Share in $Shares) {
-        $PointNums.Add($Share.num) | Out-Null
+        $PointNums.Add($Share.id) | Out-Null
 
         # Parse the given string for more accuracy
         $PointPolynomials.Add([bigint]::Parse($Share.value)) | Out-Null
     }
 
     Return (Get-LagrangeInterpolation -x 0 -PointNums $PointNums -PointPolynomials $PointPolynomials -Prime $Prime)
+
 }

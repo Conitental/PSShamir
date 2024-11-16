@@ -1,8 +1,11 @@
 Function Get-RandomShares {
     Param (
-        [bigint]$Secret,
+        [ValidateScript({
+            If([BigInt]::Parse($_)) { $true }
+        })]
+        [String]$Secret,
         [int]$MinShares = 3,
-        [int]$Shares,
+        [int]$Shares = 7,
         [bigint]$Prime = [bigint][math]::Pow(2,127) - 1
     )
 
@@ -20,8 +23,8 @@ Function Get-RandomShares {
         # We output the shares as string as that will make the initial handling of the variables to recover as bigints more controllable
         $Points.Add(
             [pscustomobject]@{
-                num = $i
-                value = $Value | Out-String
+                id = $i
+                value = $Value
         }) | Out-Null
     }
 
