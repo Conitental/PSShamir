@@ -1,3 +1,19 @@
+function Get-FloorDivision {
+    Param(
+        [bigint]$a,
+        [bigint]$b
+    )
+    $rem = 0
+    $div = [bigint]::DivRem($a, $b, [ref]$rem)
+
+    if ($div -lt 0 -and $rem -ne 0)
+    {
+        $div -= 1
+    }
+
+    return $div
+}
+
 Function Get-ExtGreatestCommonDivisor {
 	Param(
         [bigint]$a,
@@ -14,11 +30,7 @@ Function Get-ExtGreatestCommonDivisor {
         $step++
 
         # TODO: Find a better way to keep the precicion and accuracy
-        If($b -lt 5) {
-            $Quot = [bigint]::Divide($a, $b)
-        } Else {
-            [bigint]$Quot = [math]::Floor([double]$a / [double]$b)
-        }
+        $Quot = Get-FloorDivision $a $b
 
         $a, $b = $b, (Get-PythonModulus -Operant $a -Modulus $b)
 
