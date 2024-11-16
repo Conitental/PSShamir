@@ -15,14 +15,14 @@ Function Get-InputProduct {
 Function Get-LagrangeInterpolation {
     Param(
         $x,
-        [ValidateScript({
-            If($_.Count -eq ($_ | Select-Object -Unique).Count) { $true }
-            Else { $false }
-        })]
         [bigint[]]$PointNums,
         [bigint[]]$PointPolynomials,
         [bigint]$Prime
     )
+
+    If($PointNums.Count -ne ($PointNums | Select-Object -Unique).Count) {
+        throw 'Share ids need to be unique'
+    }
 
     $PointCount = $PointNums.Count
 
