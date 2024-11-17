@@ -40,7 +40,7 @@ Function Get-RandomShares {
     )
 
     If ($MinShares -gt $Shares) {
-        throw "Less shares than minimun shares to recover make the secret irrecoverable"
+        throw "Fewer shares than minimum shares to recover make the secret irrecoverable"
     }
 
     # Create the polynomial coefficients
