@@ -24,7 +24,7 @@
 #>
 Function Get-ShamirSecretShares {
     Param(
-        [Parameter(Mandatory, ValueFromPipeline)]
+        [Parameter(Mandatory)]
         [String]$Secret,
 
         [ValidateRange(2, [Int]::MaxValue)]
