@@ -22,7 +22,12 @@ Function Resolve-ShamirSecretShares {
     )
 
     # Retrieve the actual encrypted data from the base64 string
-    $UnserializedData = $Shares | ConvertFrom-SerializedObject
+    Try {
+        $UnserializedData = $Shares | ConvertFrom-SerializedObject
+    } Catch {
+        Throw [System.Management.Automation.ParsingMetadataException] "Could not unserialize share data"
+    }
+
 
     # Unzip the shares
     $AllShares = Foreach($SharePackageById in $UnserializedData) {
