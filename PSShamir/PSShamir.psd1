@@ -8,6 +8,12 @@
   Author = 'Conitental'
   Description = 'PowerShell implementation of shamirs secret sharing algorythm'
 
+  PrivateData = @{
+    PSData = @{
+      ProjectUri = 'https://github.com/Conitental/PSShamir'
+    }
+  }
+
   FunctionsToExport = @(
     ''
   )
