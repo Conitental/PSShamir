@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     Calculates the extended greatest common divisor.
 
