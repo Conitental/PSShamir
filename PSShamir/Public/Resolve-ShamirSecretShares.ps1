@@ -24,7 +24,7 @@ Function Resolve-ShamirSecretShares {
     # Retrieve the actual encrypted data from the base64 string
     $UnserializedData = $Shares | ConvertFrom-SerializedObject
 
-    # Unzip the shares 
+    # Unzip the shares
     $AllShares = Foreach($SharePackageById in $UnserializedData) {
         $ShareId = $SharePackageById.Id
 
@@ -58,7 +58,7 @@ Function Resolve-ShamirSecretShares {
             $Secret = $Secret.PadLeft($ExpectedSize, '0')
         }
 
-        Write-Output $Secret    
+        Write-Output $Secret
     }
 
     # Join the resolved secrets and split the resulting string to chunks of 3 chars
@@ -68,7 +68,6 @@ Function Resolve-ShamirSecretShares {
     } Catch {
         throw "Could not resolve secret. Did you provide the correct amount of the correct shares?"
     }
-    
 
     $Bytes | ConvertFrom-Bytes
 }
