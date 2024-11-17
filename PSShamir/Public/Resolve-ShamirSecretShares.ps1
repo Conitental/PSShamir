@@ -62,7 +62,13 @@ Function Resolve-ShamirSecretShares {
     }
 
     # Join the resolved secrets and split the resulting string to chunks of 3 chars
-    [Byte[]]$Bytes = Split-Array -Array ($RecoveredChunks -join '').ToCharArray() -ChunkSize 3 | Foreach-Object { $_ -join '' }
+    Try {
+        # TODO: Find a better way to handle supposedly wrong or few shares
+        [Byte[]]$Bytes = Split-Array -Array ($RecoveredChunks -join '').ToCharArray() -ChunkSize 3 | Foreach-Object { $_ -join '' }
+    } Catch {
+        throw "Could not resolve secret. Did you provide the correct amount of the correct shares?"
+    }
+    
 
     $Bytes | ConvertFrom-Bytes
 }
