@@ -33,6 +33,11 @@ Function Get-ShamirSecretShares {
         [Int]$MinimumShares = 3
     )
 
+    # Validate the amount of shares. This is being done outside of Param() as the parameters would be handled differently if -MinShares would be given later
+    If( $Shares -lt $MinimumShares) {
+        Throw [System.Management.Automation.ValidationMetadataException] "$Shares shares and $MinimumShares minimum shares. The secret would not be recoverable."
+    }
+
     # Convert the secret to bytes and pad them for a consistent length of the single secrets
     $Bytes = ConvertTo-Bytes $Secret | ForEach-Object {
         If($_ -lt 10) {
