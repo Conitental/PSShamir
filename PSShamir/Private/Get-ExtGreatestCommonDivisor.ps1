@@ -1,23 +1,10 @@
-function Get-FloorDivision {
-    Param(
-        [bigint]$a,
-        [bigint]$b
-    )
-    $rem = 0
-    $div = [bigint]::DivRem($a, $b, [ref]$rem)
 <#
 .SYNOPSIS
     Calculates the extended greatest common divisor.
 
-    if ($div -lt 0 -and $rem -ne 0)
-    {
-        $div -= 1
-    }
 .DESCRIPTION
     Calculates the extended greatest common divisor (GCD) of two integers using the extended Euclidean algorithm.
 
-    return $div
-}
 .PARAMETER a
     The first integer.
 

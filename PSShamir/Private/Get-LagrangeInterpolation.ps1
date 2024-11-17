@@ -1,23 +1,13 @@
-Function Get-InputProduct {
-    Param(
-        $Values
-    )
 <#
 .SYNOPSIS
     Performs Lagrange interpolation over a finite field.
 
-    [bigint]$Accumulator = 1
 .DESCRIPTION
     Performs Lagrange interpolation over a finite field to recover a secret value.
 
-    Foreach($Value in $Values) {
-        $Accumulator *= $Value
-    }
 .PARAMETER x
     The input value to interpolate.
 
-    Return $Accumulator
-}
 .PARAMETER PointNums
     An array of point numbers.
 
