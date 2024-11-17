@@ -1,3 +1,24 @@
+<#
+.SYNOPSIS
+    Splits an array into smaller chunks of a specified size.
+
+.DESCRIPTION
+    Divides an array into smaller chunks of a specified size. If the array length isn't divisible by the chunk size, the last chunk will be smaller.
+
+.PARAMETER Array
+    The array to split.
+
+.PARAMETER ChunkSize
+    The desired size of each chunk. Defaults to 10.
+
+.OUTPUTS
+    An array of arrays, each representing a chunk of the original array.
+
+.EXAMPLE
+    Split an array into chunks of 3:
+    $myArray = @(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    Split-Array -Array $myArray -ChunkSize 3
+#>
 Function Split-Array {
     Param(
         [Parameter(Mandatory)]

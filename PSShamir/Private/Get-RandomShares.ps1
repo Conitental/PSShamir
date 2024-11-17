@@ -1,3 +1,33 @@
+<#
+.SYNOPSIS
+    Generates Shamir's Secret Sharing scheme shares.
+
+.DESCRIPTION
+    Generates Shamir's Secret Sharing scheme shares for a given secret.
+
+.PARAMETER Secret
+    The secret to share.
+
+.PARAMETER MinShares
+    The minimum number of shares required to recover the secret.
+
+.PARAMETER Shares
+    The total number of shares to generate.
+
+.PARAMETER Prime
+    The prime modulus for the finite field.
+
+.OUTPUTS
+    An array of share objects, each containing an ID and a value.
+
+.EXAMPLE
+    Generate Shamir's Secret Sharing scheme shares:
+    $Secret = 12345
+    $MinShares = 3
+    $Shares = 7
+    $Prime = [bigint][math]::Pow(2,127) - 1
+    Get-RandomShares -Secret $Secret -MinShares $MinShares -Shares $Shares -Prime $Prime
+#>
 Function Get-RandomShares {
     Param (
         [ValidateScript({

@@ -1,3 +1,27 @@
+<#
+.SYNOPSIS
+    Splits a secret into shares using Shamir's Secret Sharing scheme.
+
+.DESCRIPTION
+    This function takes a secret string and splits it into shares using Shamir's Secret Sharing scheme. It first converts the secret into bytes, pads them, and splits them into chunks. Each chunk is then shared using Shamir's Secret Sharing, and the resulting shares are combined and serialized.
+
+.PARAMETER Secret
+    The secret string to be shared.
+
+.PARAMETER Shares
+    The total number of shares to generate. Defaults to 7.
+
+.PARAMETER MinimumShares
+    The minimum number of shares required to reconstruct the secret. Defaults to 3.
+
+.OUTPUTS
+    A serialized object containing an array of share objects, each with an ID, value, and chunk index.
+
+.EXAMPLE
+    Share a secret:
+    $Secret = "MySecretMessage"
+    Get-ShamirSecretShares -Secret $Secret
+#>
 Function Get-ShamirSecretShares {
     Param(
         [Parameter(Mandatory, ValueFromPipeline)]

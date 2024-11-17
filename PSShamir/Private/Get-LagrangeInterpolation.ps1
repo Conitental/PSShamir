@@ -2,16 +2,42 @@ Function Get-InputProduct {
     Param(
         $Values
     )
+<#
+.SYNOPSIS
+    Performs Lagrange interpolation over a finite field.
 
     [bigint]$Accumulator = 1
+.DESCRIPTION
+    Performs Lagrange interpolation over a finite field to recover a secret value.
 
     Foreach($Value in $Values) {
         $Accumulator *= $Value
     }
+.PARAMETER x
+    The input value to interpolate.
 
     Return $Accumulator
 }
+.PARAMETER PointNums
+    An array of point numbers.
 
+.PARAMETER PointPolynomials
+    An array of polynomial values at the corresponding point numbers.
+
+.PARAMETER Prime
+    The prime modulus of the finite field.
+
+.OUTPUTS
+    The interpolated secret value.
+
+.EXAMPLE
+    Interpolate a secret value:
+    $x = 5
+    $PointNums = @(1, 2, 3)
+    $PointPolynomials = @(2, 4, 9)
+    $Prime = 11
+    Get-LagrangeInterpolation -x $x -PointNums $PointNums -PointPolynomials $PointPolynomials -Prime $Prime
+#>
 Function Get-LagrangeInterpolation {
     Param(
         $x,

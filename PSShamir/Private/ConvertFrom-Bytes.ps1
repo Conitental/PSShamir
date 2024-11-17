@@ -1,3 +1,23 @@
+<#
+.SYNOPSIS
+    Converts a byte array to a string.
+
+.DESCRIPTION
+    Converts a byte array to a string using the specified encoding.
+
+.PARAMETER Bytes
+    The byte array to convert.
+
+.PARAMETER Encoding
+    The encoding to use for the conversion. Defaults to UTF8.
+
+.OUTPUTS
+    A string
+
+.EXAMPLE
+    Convert a byte array to a string:
+    [byte[]](65, 66, 67) | ConvertFrom-Bytes
+#>
 Function ConvertFrom-Bytes {
     Param(
         [Parameter(Mandatory, ValueFromPipeline)]
