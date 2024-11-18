@@ -38,9 +38,19 @@ Which in turn means you will need to have at least 5 of the generated shares to 
 Resolve-ShamirSecretShares -Shares $SecretShares[0..4]
 ```
 
-The generated shares can be written to files for distribution:
+## Examples
+
+Generate shares and write them to files for distribution:
 ```powershell
 Get-ShamirSecretShares -Secret 'XRidnHBM@*WU!4|CAQvJEk0O' | % {
   Set-Content -Path ".\SecretShare_$($_.Id).txt" -Value $_.Share
 }
 ```
+
+Load saved shares again to recover the secret:
+```powershell
+$SecretShares = Get-Content .\SecretShare_*
+Resolve-ShamirSecretShares $SecretShares
+```
+
+
