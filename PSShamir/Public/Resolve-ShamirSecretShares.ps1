@@ -18,8 +18,18 @@
 Function Resolve-ShamirSecretShares {
     Param(
         [Parameter(Mandatory)]
-        [String[]]$Shares
+        [Array]$Shares
     )
+
+    # Check if we got passed the shares directly from Get-ShamirSecretShares and extract the share property
+    If( $Shares[0].GetType().Name -eq 'PSCustomObject' ) {
+        # Check if we have the right property
+        If(-not (($Shares | Get-Member -MemberType NoteProperty).Name -contains 'Share')) {
+            throw "Passed object does not have a share property. Please either pass the given object of Get-ShamirSecretShares or pass an array of the serialized shares."
+        }
+
+        $Shares = $Shares.Share
+    }
 
     # Retrieve the actual encrypted data from the base64 string
     Try {
