@@ -2,6 +2,8 @@ BeforeAll {
 	$ModuleRoot = "$PSScriptRoot\..\PSShamir\"
 
 	Import-Module "$ModuleRoot\PSShamir.psm1"
+
+    Get-ChildItem "$ModuleRoot\Private" | Foreach-Object { . $_.FullName}
 }
 
 Describe "Resolve-ShamirSecretShares" {
