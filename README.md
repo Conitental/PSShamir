@@ -2,12 +2,12 @@
 
 # PSShamir
 
-PSShamir is a PowerShell implementation of [*Shamir's secret sharing*](https://en.wikipedia.org/wiki/Shamir's_secret_sharing) algorythm for distributing information among multiple parties while requiring a set amount of them to be able to recover the original information.
+PSShamir is a PowerShell implementation of [*Shamir's secret sharing*](https://en.wikipedia.org/wiki/Shamir's_secret_sharing) algorithm for distributing information among multiple parties while requiring a set amount of them to be able to recover the original information.
 
 </div>
 
-## Raison d'être
-Probably none aside from curiosity and a little desire to educate myself in some topics. Years back i found this algorythm by chance through some answer on a [StackExchange thread about storing private keys](https://security.stackexchange.com/a/115167) and wanted to try some implementation of it later on.
+## Purpose
+Probably none aside from curiosity and a little desire to educate myself in some topics. Years back i found this algorithm by chance through some answer on a [StackExchange thread about storing private keys](https://security.stackexchange.com/a/115167) and wanted to try some implementation of it later on.
 
 ## Installation
 *PSShamir* is available on the PowerShell Gallery. Use the following command to install it:
