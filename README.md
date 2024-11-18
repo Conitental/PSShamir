@@ -20,7 +20,7 @@ Install-Module -Name PSShamir -Scope CurrentUser
 
 Call `Get-ShamirSecretShares` and specify the information you want to split:
 ```powershell
-$SecretShares = Get-ShamirSecretShares -Secret "It's getting late 🐢"
+$SecretShares = Get-ShamirSecretShares -Secret "Secret Value 🔐"
 ```
 
 This will by default generate 7 shares as Base64 encoded strings, of which you will need at least three to recover the secret:
