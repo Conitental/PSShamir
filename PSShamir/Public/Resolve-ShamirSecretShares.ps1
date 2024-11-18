@@ -38,12 +38,31 @@ Function Resolve-ShamirSecretShares {
         Throw [System.Management.Automation.ParsingMetadataException] "Could not unserialize share data"
     }
 
+    # Make sure the unserialized data has all required fields
+    'Id', 'Data' | Foreach-Object {
+        $RequiredProperty = $_
+        $Members = ($UnserializedData | Get-Member -MemberType NoteProperty).Name
+
+        If($Members -notcontains $RequiredProperty) {
+            throw "Passed object does not contain required property $RequiredProperty"
+        }
+    }
 
     # Unzip the shares
     $AllShares = Foreach($SharePackageById in $UnserializedData) {
         $ShareId = $SharePackageById.Id
 
         Foreach($Share in $SharePackageById.Data) {
+            # Verify that the share has all required properties
+            'chunkindex', 'value' | Foreach-Object {
+                $RequiredProperty = $_
+                $Members = ($Share | Get-Member -MemberType NoteProperty).Name
+
+                If($Members -notcontains $RequiredProperty) {
+                    throw "Share $ShareId does not contain required property $RequiredProperty"
+                }
+            }
+
             [PSCustomObject]@{
                 id = $ShareId
                 value = $Share.value
