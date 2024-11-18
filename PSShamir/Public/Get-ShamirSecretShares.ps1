@@ -87,5 +87,12 @@ Function Get-ShamirSecretShares {
         }
     }
 
-    Return $ZippedShares | ConvertTo-SerializedObject
+    $SerializedShares = Foreach( $ZippedShare in $ZippedShares) {
+        [PSCustomObject]@{
+            Id = $ZippedShare.Id
+            Share = $ZippedShare | ConvertTo-SerializedObject
+        }
+    }
+
+    Return $SerializedShares
 }
