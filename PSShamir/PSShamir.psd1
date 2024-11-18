@@ -3,7 +3,7 @@
 @{
 
   RootModule = 'PSShamir.psm1'
-  ModuleVersion = '1.0.2'
+  ModuleVersion = '1.0.3'
   GUID = '7698fee8-d6db-40a2-8d1d-08aa2fc1339a'
   Author = 'Conitental'
   Description = 'PowerShell implementation of shamirs secret sharing algorythm'
